@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['namespace' => 'Admin'], function() {
+	Route::group(['prefix' => 'cms'], function () {
+		Route::get('/', [
+			'as' => 'dashboard',
+			'uses' => 'HomeController@dashboard'
+		]);
+	});
+});
