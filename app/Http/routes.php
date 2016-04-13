@@ -15,11 +15,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Authentication routes...
+/*Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');*/
+
 Route::group(['namespace' => 'Admin'], function() {
 	Route::group(['prefix' => 'cms'], function () {
 		Route::get('/', [
 			'as' => 'dashboard',
 			'uses' => 'HomeController@dashboard'
+		]);
+
+		Route::any('/login', [
+			'as' => 'admin-login',
+			'uses' => 'LoginController@login'
 		]);
 	});
 });
